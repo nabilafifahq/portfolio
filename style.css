@@ -3,12 +3,45 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: var(--color-light);
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+  }
+
+  nav {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  nav a {
+    color: var(--color-light);
+  }
+
+  section,
+  article,
+  form,
+  header {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-light);
+  }
+
+  button {
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+  }
+
+  footer {
+    color: var(--color-light);
+  }
+}
 
 :root {
-  /* Spacing */
   --padding-global: 35px;
 
-  /* Colors */
   --color-primary: #667eea;
   --color-secondary: #764ba2;
   --color-dark: #1a1a1a;
@@ -120,6 +153,11 @@ nav a::before {
 nav a:hover {
   transform: translateY(-2px);
 }
+nav a.current {
+  background: var(--color-primary);
+  color: var(--color-light);
+  box-shadow: 0 0 10px var(--color-shadow);
+}
 nav a:hover::before {
   width: 80%;
 }
@@ -137,7 +175,6 @@ footer {
   padding: var(--padding-global);
 }
 
-/* Consistent Card Styling */
 section,
 article,
 form {
@@ -183,7 +220,6 @@ header img:hover {
   box-shadow: 0 15px 50px rgba(102, 126, 234, 0.6);
 }
 
-/* Typography */
 h1 {
   color: var(--color-primary);
   margin-bottom: 15px;
@@ -237,7 +273,6 @@ a:hover {
   color: var(--color-secondary);
 }
 
-/* Lists */
 ul {
   list-style: none;
   padding-left: 0;
@@ -257,7 +292,6 @@ ul li::before {
   font-size: 1.2rem;
 }
 
-/* Form */
 form {
   margin: 30px auto;
 }
@@ -490,4 +524,29 @@ footer {
     box-shadow: none;
     page-break-inside: avoid;
   }
+}
+
+.color-scheme {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 0.9rem;
+  color: var(--color-light);
+  background: rgba(255, 255, 255, 0.15);
+  padding: 6px 10px;
+  border-radius: 8px;
+  z-index: 2000;
+  backdrop-filter: blur(10px);
+}
+
+.color-scheme select {
+  font-family: inherit;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  padding: 3px 6px;
+  margin-left: 5px;
+  background: var(--color-light);
+  color: var(--color-dark);
+  cursor: pointer;
 }

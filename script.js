@@ -1,17 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.querySelector(".hamburger");
-  const nav = document.querySelector("nav");
+  const hamburger = document.querySelector(".hamburger")
+  const nav = document.getElementById("site-nav") || document.querySelector("nav")
+  if (!hamburger || !nav) return
 
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    nav.classList.toggle("active");
-  });
+  const toggle = () => {
+    const open = nav.classList.toggle("active")
+    hamburger.classList.toggle("active", open)
+    hamburger.setAttribute("aria-expanded", String(open))
+  }
 
-  // auto-close saat klik link nav
-  document.querySelectorAll("nav a").forEach((link) => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      nav.classList.remove("active");
-    });
-  });
-});
+  hamburger.addEventListener("click", toggle)
+
+  hamburger.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault()
+      toggle()
+    }
+    if (e.key === "Escape") {
+      nav.classList.remove("active")
+      hamburger.classList.remove("active")
+      hamburger.setAttribute("aria-expanded", "false")
+    }
+  })
+
+  nav.addEventListener("click", e => {
+    if (e.target.closest("a")) {
+      nav.classList.remove("active")
+      hamburger.classList.remove("active")
+      hamburger.setAttribute("aria-expanded", "false")
+    }
+  })
+})
