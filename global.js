@@ -41,7 +41,7 @@ document.body.insertAdjacentHTML(
   "afterbegin",
   `
   <label class="color-scheme"
-         style="position: fixed; top: 10px; right: 10px; z-index: 1001;
+         style="position: fixed; top: 10px; left: 10px; z-index: 1001;
                 backdrop-filter: blur(10px); background: rgba(255,255,255,0.15);
                 padding: 8px 12px; border-radius: 8px;">
     Theme:
