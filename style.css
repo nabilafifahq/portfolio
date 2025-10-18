@@ -3,98 +3,61 @@
   padding: 0;
   box-sizing: border-box;
 }
-:root {
-  color-scheme: light dark;
-}
 
-@media (prefers-color-scheme: dark) {
-  body {
-    color: var(--color-light);
-    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
-  }
-
-  nav {
-    background: rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  nav a {
-    color: var(--color-light);
-  }
-
-  section,
-  article,
-  form,
-  header {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--color-light);
-  }
-
-  button {
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
-  }
-
-  footer {
-    color: var(--color-light);
-  }
-}
+:root { color-scheme: light dark }
 
 :root {
   --padding-global: 35px;
 
-  --color-primary: #667eea;
-  --color-secondary: #764ba2;
-  --color-dark: #1a1a1a;
-  --color-text: #333;
-  --color-light: #ffffff;
-  --color-light-rgba: rgba(255, 255, 255, 0.95);
-  --color-light-opaque: rgba(255, 255, 255, 0.1);
-  --color-light-strong: rgba(255, 255, 255, 0.2);
-  --color-shadow: rgba(0, 0, 0, 0.1);
-  --color-shadow-strong: rgba(0, 0, 0, 0.15);
-  --color-border: #e0e0e0;
+  --brand-primary: #667eea;
+  --brand-secondary: #764ba2;
+
+  --bg: canvas;
+  --fg: canvastext;
+
+  --surface: color-mix(in oklch, var(--bg) 92%, var(--fg) 8%);
+  --surface-strong: color-mix(in oklch, var(--bg) 88%, var(--fg) 12%);
+  --glass: color-mix(in oklch, var(--bg) 80%, var(--fg) 20%);
+  --border: color-mix(in oklch, var(--fg) 20%, var(--bg) 80%);
+  --shadow: color-mix(in oklch, var(--fg) 15%, transparent);
+  --shadow-strong: color-mix(in oklch, var(--fg) 25%, transparent);
+
+  --link: color-mix(in oklch, var(--fg) 40%, var(--bg) 60%);
+  --link-hover: color-mix(in oklch, var(--fg) 55%, var(--bg) 45%);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
 }
 
 body {
-  font: 100%/1.6 system-ui, -apple-system, sans-serif;
-  color: var(--color-dark);
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-secondary) 100%
-  );
+  font: 100%/1.6 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in oklch, var(--bg) 92%, var(--fg) 8%) 0%,
+      color-mix(in oklch, var(--bg) 88%, var(--fg) 12%) 100%
+    );
   background-size: 200% 200%;
   animation: gradient 15s ease infinite;
   min-height: 100vh;
 }
 
 @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px) }
+  to { opacity: 1; transform: translateY(0) }
 }
 
-body > * {
-  animation: fadeIn 0.6s ease-out;
-}
+body > * { animation: fadeIn 0.6s ease-out }
 
+/* ---------- Hamburger ---------- */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -104,32 +67,34 @@ body > * {
   top: 15px;
   right: 20px;
   z-index: 2000;
-  background: var(--color-primary);
+  background: var(--glass);
   border-radius: 8px;
   backdrop-filter: blur(10px);
 }
 .hamburger span {
   width: 25px;
   height: 3px;
-  background: var(--color-light);
+  background: var(--fg);
   margin: 3px 0;
   transition: 0.3s;
   border-radius: 3px;
 }
 
+/* ---------- Nav ---------- */
 nav {
-  background: var(--color-light-opaque);
+  background: color-mix(in oklch, var(--bg) 85%, var(--fg) 15%);
   backdrop-filter: blur(10px);
   padding: var(--padding-global);
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid var(--color-light-strong);
-  box-shadow: 0 4px 30px var(--color-shadow);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 30px var(--shadow);
   text-align: center;
 }
+
 nav a {
-  color: var(--color-light);
+  color: var(--fg);
   text-decoration: none;
   margin: 0 12px;
   padding: 10px 20px;
@@ -139,6 +104,7 @@ nav a {
   display: inline-block;
   position: relative;
 }
+
 nav a::before {
   content: "";
   position: absolute;
@@ -146,101 +112,83 @@ nav a::before {
   left: 50%;
   width: 0;
   height: 2px;
-  background: var(--color-light);
+  background: var(--fg);
   transition: all 0.3s ease;
   transform: translateX(-50%);
 }
-nav a:hover {
-  transform: translateY(-2px);
-}
+
+nav a:hover { transform: translateY(-2px) }
+nav a:hover::before { width: 80% }
+
 nav a.current {
-  background: var(--color-primary);
-  color: var(--color-light);
-  box-shadow: 0 0 10px var(--color-shadow);
-}
-nav a:hover::before {
-  width: 80%;
+  background: color-mix(in oklch, var(--fg) 12%, var(--bg) 88%);
+  box-shadow: 0 0 10px var(--shadow);
 }
 
-main {
-  margin: 40px auto;
-  padding: 0 var(--padding-global);
-}
+/* ---------- Layout ---------- */
+main { margin: 40px auto; padding: 0 var(--padding-global) }
 
-section,
-article,
-form,
-header,
-footer {
+section, article, form, header, footer {
   padding: var(--padding-global);
 }
 
-section,
-article,
-form {
-  background: var(--color-light-rgba);
+section, article, form {
+  background: var(--surface);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   margin-bottom: 30px;
-  box-shadow: 0 8px 32px var(--color-shadow);
+  box-shadow: 0 8px 32px var(--shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-section:hover,
-article:hover {
+section:hover, article:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 40px var(--color-shadow-strong);
+  box-shadow: 0 12px 40px var(--shadow-strong);
 }
 
 header {
   text-align: center;
-  background: var(--color-light-rgba);
+  background: var(--surface);
   backdrop-filter: blur(10px);
   border-radius: 30px;
   margin-bottom: 40px;
-  box-shadow: 0 8px 32px var(--color-shadow);
+  box-shadow: 0 8px 32px var(--shadow);
   position: relative;
   overflow: hidden;
 }
-header > * {
-  position: relative;
-  z-index: 1;
-}
+header > * { position: relative; z-index: 1 }
+
 header img {
   width: 180px;
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 25px;
-  border: 5px solid var(--color-primary);
-  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+  border: 5px solid var(--brand-primary);
+  box-shadow: 0 10px 40px color-mix(in oklch, var(--brand-primary) 40%, transparent);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 header img:hover {
   transform: scale(1.05) rotate(5deg);
-  box-shadow: 0 15px 50px rgba(102, 126, 234, 0.6);
+  box-shadow: 0 15px 50px color-mix(in oklch, var(--brand-primary) 60%, transparent);
 }
 
+/* ---------- Typography ---------- */
 h1 {
-  color: var(--color-primary);
   margin-bottom: 15px;
   font-size: 2.5rem;
   font-weight: 700;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-secondary) 100%
-  );
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 h1.title {
-  background: var(--color-light);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* keep readable on both modes */
+  -webkit-text-fill-color: initial;
+  color: var(--fg);
 }
 h2 {
-  color: var(--color-primary);
-  border-bottom: 3px solid var(--color-primary);
+  color: var(--brand-primary);
+  border-bottom: 3px solid var(--brand-primary);
   padding-bottom: 15px;
   margin-bottom: 25px;
   font-size: 1.8rem;
@@ -253,30 +201,16 @@ h2::after {
   left: 0;
   width: 60px;
   height: 3px;
-  background: var(--color-secondary);
+  background: var(--brand-secondary);
 }
-h3 {
-  color: var(--color-secondary);
-  margin-bottom: 10px;
-  font-size: 1.3rem;
-}
-p {
-  margin-bottom: 15px;
-  line-height: 1.8;
-  color: var(--color-text);
-}
-a {
-  color: var(--color-primary);
-  transition: color 0.3s ease;
-}
-a:hover {
-  color: var(--color-secondary);
-}
+h3 { color: var(--brand-secondary); margin-bottom: 10px; font-size: 1.3rem }
 
-ul {
-  list-style: none;
-  padding-left: 0;
-}
+p { margin-bottom: 15px; line-height: 1.8 }
+a { color: var(--link); transition: color 0.3s ease }
+a:hover { color: var(--link-hover) }
+
+/* ---------- Lists ---------- */
+ul { list-style: none; padding-left: 0 }
 ul li {
   padding-left: 30px;
   margin-bottom: 12px;
@@ -287,52 +221,43 @@ ul li::before {
   content: "→";
   position: absolute;
   left: 0;
-  color: var(--color-primary);
+  color: var(--brand-primary);
   font-weight: bold;
   font-size: 1.2rem;
 }
 
-form {
-  margin: 30px auto;
-}
+/* ---------- Forms ---------- */
+form { margin: 30px auto }
 label {
   display: block;
   margin-bottom: 25px;
   font-weight: 600;
-  color: var(--color-text);
 }
-input,
-textarea {
+
+input, textarea {
   width: 100%;
   padding: 15px 20px;
   margin-top: 8px;
-  border: 2px solid var(--color-border);
+  border: 2px solid var(--border);
   border-radius: 12px;
-  font-family: inherit;
+  font: inherit;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: var(--color-light);
+  background: var(--bg);
+  color: var(--fg);
 }
-input:focus,
-textarea:focus {
+input:focus, textarea:focus {
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--brand-primary) 15%, transparent);
   transform: translateY(-2px);
 }
-textarea {
-  min-height: 180px;
-  resize: vertical;
-}
+textarea { min-height: 180px; resize: vertical }
 
-/* Button */
+/* ---------- Buttons ---------- */
 button {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-secondary) 100%
-  );
-  color: var(--color-light);
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+  color: white;
   padding: var(--padding-global);
   border: none;
   border-radius: 30px;
@@ -340,7 +265,7 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 15px color-mix(in oklch, var(--brand-primary) 40%, transparent);
   position: relative;
   overflow: hidden;
 }
@@ -352,41 +277,31 @@ button::before {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: color-mix(in oklch, white 30%, transparent);
   transform: translate(-50%, -50%);
   transition: width 0.6s, height 0.6s;
 }
 button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+  box-shadow: 0 6px 25px color-mix(in oklch, var(--brand-primary) 60%, transparent);
 }
-button:hover::before {
-  width: 300px;
-  height: 300px;
-}
-button:active {
-  transform: translateY(-1px);
-}
+button:hover::before { width: 300px; height: 300px }
+button:active { transform: translateY(-1px) }
 
-/* Footer */
+/* ---------- Footer ---------- */
 footer {
   text-align: center;
   margin-top: 60px;
-  color: var(--color-light);
-  background: var(--color-light-opaque);
+  background: var(--surface);
   backdrop-filter: blur(10px);
-  border-top: 1px solid var(--color-light-strong);
+  border-top: 1px solid var(--border);
 }
 
+/* ---------- Mobile nav ---------- */
 @media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
+  .hamburger { display: flex }
 
-  nav a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-  }
+  nav a:hover { transform: translateY(-2px) }
 
   nav {
     position: fixed;
@@ -394,19 +309,17 @@ footer {
     right: -100%;
     width: 280px;
     height: 100vh;
-    background: rgba(102, 126, 234, 0.98);
+    background: color-mix(in oklch, var(--bg) 75%, var(--fg) 25%);
     backdrop-filter: blur(20px);
     padding: 80px 30px 30px;
     transition: right 0.3s ease;
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+    border-left: 1px solid var(--border);
+    box-shadow: -5px 0 30px var(--shadow-strong);
     text-align: left;
     overflow-y: auto;
   }
 
-  nav.active {
-    right: 0;
-  }
+  nav.active { right: 0 }
 
   nav a {
     display: block;
@@ -416,114 +329,46 @@ footer {
     font-size: 1rem;
   }
 
-  nav a::before {
-    display: none;
-  }
+  nav a::before { display: none }
 
-  main {
-    margin: 20px auto;
-    padding: 0 20px;
-  }
+  main { margin: 20px auto; padding: 0 20px }
 
-  section,
-  article,
-  form {
-    padding: 25px 20px;
-    border-radius: 15px;
-  }
+  section, article, form { padding: 25px 20px; border-radius: 15px }
 
-  header {
-    padding: 35px 20px;
-    border-radius: 20px;
-    margin-bottom: 30px;
-  }
+  header { padding: 35px 20px; border-radius: 20px; margin-bottom: 30px }
 
-  header img {
-    width: 140px;
-    height: 140px;
-  }
+  header img { width: 140px; height: 140px }
 
-  h1 {
-    font-size: 1.8rem;
-  }
+  h1 { font-size: 1.8rem }
+  h2 { font-size: 1.4rem }
+  h3 { font-size: 1.1rem }
 
-  h2 {
-    font-size: 1.4rem;
-  }
+  button { width: 100%; padding: 14px 30px }
 
-  h3 {
-    font-size: 1.1rem;
-  }
-
-  button {
-    width: 100%;
-    padding: 14px 30px;
-  }
-
-  form {
-    padding: 25px 20px;
-  }
+  form { padding: 25px 20px }
 }
 
 @media (max-width: 480px) {
-  main {
-    padding: 0 15px;
-  }
+  main { padding: 0 15px }
 
-  nav a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-  }
-  section,
-  article,
-  form {
-    padding: 20px 15px;
-  }
+  nav a:hover { transform: translateY(-2px) }
 
-  header {
-    padding: 30px 15px;
-  }
+  section, article, form { padding: 20px 15px }
+  header { padding: 30px 15px }
+  header img { width: 120px; height: 120px }
 
-  header img {
-    width: 120px;
-    height: 120px;
-  }
+  h1 { font-size: 1.5rem }
+  h2 { font-size: 1.2rem }
 
-  h1 {
-    font-size: 1.5rem;
-  }
+  ul li { padding-left: 25px; font-size: 0.95rem }
 
-  h2 {
-    font-size: 1.2rem;
-  }
-
-  ul li {
-    padding-left: 25px;
-    font-size: 0.95rem;
-  }
-
-  nav {
-    width: 260px;
-    padding: 70px 20px 20px;
-  }
+  nav { width: 260px; padding: 70px 20px 20px }
 }
 
 @media print {
-  body {
-    background: white;
-  }
-
-  nav,
-  footer,
-  .hamburger {
-    display: none;
-  }
-
-  section,
-  article {
-    box-shadow: none;
-    page-break-inside: avoid;
-  }
+  body { background: white; color: black }
+  nav, footer, .hamburger { display: none }
+  section, article { box-shadow: none; page-break-inside: avoid }
 }
 
 .color-scheme {
@@ -531,14 +376,13 @@ footer {
   top: 15px;
   right: 15px;
   font-size: 0.9rem;
-  color: var(--color-light);
-  background: rgba(255, 255, 255, 0.15);
+  color: var(--fg);
+  background: color-mix(in oklch, var(--bg) 70%, var(--fg) 30%);
   padding: 6px 10px;
   border-radius: 8px;
   z-index: 2000;
   backdrop-filter: blur(10px);
 }
-
 .color-scheme select {
   font-family: inherit;
   font-size: 0.9rem;
@@ -546,7 +390,7 @@ footer {
   border-radius: 5px;
   padding: 3px 6px;
   margin-left: 5px;
-  background: var(--color-light);
-  color: var(--color-dark);
+  background: var(--bg);
+  color: var(--fg);
   cursor: pointer;
 }
