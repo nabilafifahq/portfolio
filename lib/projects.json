@@ -1,74 +1,14 @@
 [
     {
-      "title": "Landing Page Revamp",
+      "title": "Marketing Communications at UC San Diego IT Services",
       "year": "2025",
       "image": "images/empty.svg",
-      "description": "Modern landing page with theme switching and auto nav."
+      "description": "Developing and executing communication strategies."
     },
     {
-      "title": "Portfolio Grid",
+      "title": "Community Growth at Tech Voice Indonesia",
       "year": "2025",
       "image": "images/empty.svg",
-      "description": "Responsive grid with cards and hover states."
-    },
-    {
-      "title": "Data Viz Prototype",
-      "year": "2025",
-      "image": "images/empty.svg",
-      "description": "Early charts and axes experiments."
-    },
-    {
-      "title": "Form UX Demo",
-      "year": "2025",
-      "image": "images/empty.svg",
-      "description": "Contact form with mailto builder and proper encoding."
-    },
-    {
-      "title": "Color System Tokens",
-      "year": "2025",
-      "image": "images/empty.svg",
-      "description": "Canvas and canvastext based tokens."
-    },
-    {
-      "title": "Animation Study",
-      "year": "2025",
-      "image": "images/empty.svg",
-      "description": "Keyframes, easing, and motion polish."
-    },
-    {
-      "title": "Accessibility Pass",
-      "year": "2025",
-      "image": "images/empty.svg",
-      "description": "Skip links and focus rings."
-    },
-    {
-      "title": "Nav Generator",
-      "year": "2025",
-      "image": "images/empty.svg",
-      "description": "JS builds site wide nav from one list."
-    },
-    {
-      "title": "Cards Layout",
-      "year": "2025",
-      "image": "images/empty.svg",
-      "description": "Flexible card template."
-    },
-    {
-      "title": "Typography Scale",
-      "year": "2025",
-      "image": "images/empty.svg",
-      "description": "Responsive type scale."
-    },
-    {
-      "title": "Media Queries Audit",
-      "year": "2025",
-      "image": "images/empty.svg",
-      "description": "Clean breakpoints for mobile and tablet."
-    },
-    {
-      "title": "Design Tokens Export",
-      "year": "2025",
-      "image": "images/empty.svg",
-      "description": "Colors, spacing, and radii defined once."
+      "description": "Leading community engagement initiatives."
     }
   ]  
