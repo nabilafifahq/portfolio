@@ -384,3 +384,66 @@ footer {
   color: var(--fg);
   cursor: pointer;
 }
+#github-stats {
+  margin: 40px auto;
+}
+
+#github-stats h2 {
+  margin-bottom: 14px;
+}
+
+.gh-stats {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 6px 18px var(--shadow);
+}
+
+.gh-loading { opacity: .7; font-style: italic }
+
+.gh-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin: 0;
+}
+
+.gh-cell {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: left;
+  box-shadow: 0 4px 14px var(--shadow);
+}
+
+.gh-cell dt {
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: .82rem;
+  color: color-mix(in oklch, var(--fg) 50%, var(--bg) 50%);
+}
+
+.gh-cell dd {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--fg);
+}
+
+.gh-error {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: color-mix(in oklch, var(--bg) 80%, var(--fg) 20%);
+}
+
+@media (max-width: 800px) {
+  .gh-grid { grid-template-columns: repeat(2, 1fr) }
+}
+@media (max-width: 480px) {
+  .gh-grid { grid-template-columns: 1fr }
+}

@@ -87,15 +87,12 @@ if (form) {
 
 export async function fetchJSON(url) {
   try {
-    const response = await fetch(url)
-    if (!response.ok) {
-      throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`)
-    }
-    const data = await response.json()
-    return data
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    return await res.json();
   } catch (err) {
-    console.error("Error fetching or parsing JSON data:", err)
-    return null
+    console.error("fetchJSON error for", url, err);
+    throw err;
   }
 }
 
@@ -128,5 +125,5 @@ export function renderProjects(projects, containerElement, headingLevel = "h2") 
 }
 
 export async function fetchGitHubData(username) {
-  return fetchJSON(`https://api.github.com/users/${username}`)
+  return fetchJSON(`https://api.github.com/users/${username}`);
 }
