@@ -4,7 +4,9 @@
   box-sizing: border-box;
 }
 
-:root { color-scheme: light dark }
+:root {
+  color-scheme: light dark
+}
 
 :root {
   --padding-global: 35px;
@@ -26,7 +28,8 @@
   --link-hover: color-mix(in oklch, var(--fg) 55%, var(--bg) 45%);
 }
 
-html, body {
+html,
+body {
   background: var(--bg);
   color: var(--fg);
 }
@@ -34,28 +37,43 @@ html, body {
 body {
   font: 100%/1.6 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       color-mix(in oklch, var(--bg) 92%, var(--fg) 8%) 0%,
-      color-mix(in oklch, var(--bg) 88%, var(--fg) 12%) 100%
-    );
+      color-mix(in oklch, var(--bg) 88%, var(--fg) 12%) 100%);
   background-size: 200% 200%;
   animation: gradient 15s ease infinite;
   min-height: 100vh;
 }
 
 @keyframes gradient {
-  0% { background-position: 0% 50% }
-  50% { background-position: 100% 50% }
-  100% { background-position: 0% 50% }
+  0% {
+    background-position: 0% 50%
+  }
+
+  50% {
+    background-position: 100% 50%
+  }
+
+  100% {
+    background-position: 0% 50%
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px) }
-  to { opacity: 1; transform: translateY(0) }
+  from {
+    opacity: 0;
+    transform: translateY(20px)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
 }
 
-body > * { animation: fadeIn 0.6s ease-out }
+body>* {
+  animation: fadeIn 0.6s ease-out
+}
 
 .hamburger {
   display: none;
@@ -70,6 +88,7 @@ body > * { animation: fadeIn 0.6s ease-out }
   border-radius: 8px;
   backdrop-filter: blur(10px);
 }
+
 .hamburger span {
   width: 25px;
   height: 3px;
@@ -115,21 +134,35 @@ nav a::before {
   transform: translateX(-50%);
 }
 
-nav a:hover { transform: translateY(-2px) }
-nav a:hover::before { width: 80% }
+nav a:hover {
+  transform: translateY(-2px)
+}
+
+nav a:hover::before {
+  width: 80%
+}
 
 nav a.current {
   background: color-mix(in oklch, var(--fg) 12%, var(--bg) 88%);
   box-shadow: 0 0 10px var(--shadow);
 }
 
-main { margin: 40px auto; padding: 0 var(--padding-global) }
+main {
+  margin: 40px auto;
+  padding: 0 var(--padding-global)
+}
 
-section, article, form, header, footer {
+section,
+article,
+form,
+header,
+footer {
   padding: var(--padding-global);
 }
 
-section, article, form {
+section,
+article,
+form {
   background: var(--surface);
   backdrop-filter: blur(10px);
   border-radius: 20px;
@@ -137,7 +170,9 @@ section, article, form {
   box-shadow: 0 8px 32px var(--shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-section:hover, article:hover {
+
+section:hover,
+article:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 40px var(--shadow-strong);
 }
@@ -152,7 +187,11 @@ header {
   position: relative;
   overflow: hidden;
 }
-header > * { position: relative; z-index: 1 }
+
+header>* {
+  position: relative;
+  z-index: 1
+}
 
 header img {
   width: 180px;
@@ -164,6 +203,7 @@ header img {
   box-shadow: 0 10px 40px color-mix(in oklch, var(--brand-primary) 40%, transparent);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 header img:hover {
   transform: scale(1.05) rotate(5deg);
   box-shadow: 0 15px 50px color-mix(in oklch, var(--brand-primary) 60%, transparent);
@@ -177,10 +217,12 @@ h1 {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 h1.title {
   -webkit-text-fill-color: initial;
   color: var(--fg);
 }
+
 h2 {
   color: var(--brand-primary);
   border-bottom: 3px solid var(--brand-primary);
@@ -189,6 +231,7 @@ h2 {
   font-size: 1.8rem;
   position: relative;
 }
+
 h2::after {
   content: "";
   position: absolute;
@@ -198,19 +241,39 @@ h2::after {
   height: 3px;
   background: var(--brand-secondary);
 }
-h3 { color: var(--brand-secondary); margin-bottom: 10px; font-size: 1.3rem }
 
-p { margin-bottom: 15px; line-height: 1.8 }
-a { color: var(--link); transition: color 0.3s ease }
-a:hover { color: var(--link-hover) }
+h3 {
+  color: var(--brand-secondary);
+  margin-bottom: 10px;
+  font-size: 1.3rem
+}
 
-ul { list-style: none; padding-left: 0 }
+p {
+  margin-bottom: 15px;
+  line-height: 1.8
+}
+
+a {
+  color: var(--link);
+  transition: color 0.3s ease
+}
+
+a:hover {
+  color: var(--link-hover)
+}
+
+ul {
+  list-style: none;
+  padding-left: 0
+}
+
 ul li {
   padding-left: 30px;
   margin-bottom: 12px;
   position: relative;
   line-height: 1.6;
 }
+
 ul li::before {
   content: "→";
   position: absolute;
@@ -220,14 +283,18 @@ ul li::before {
   font-size: 1.2rem;
 }
 
-form { margin: 30px auto }
+form {
+  margin: 30px auto
+}
+
 label {
   display: block;
   margin-bottom: 25px;
   font-weight: 600;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
   padding: 15px 20px;
   margin-top: 8px;
@@ -239,13 +306,19 @@ input, textarea {
   background: var(--bg);
   color: var(--fg);
 }
-input:focus, textarea:focus {
+
+input:focus,
+textarea:focus {
   outline: none;
   border-color: var(--brand-primary);
   box-shadow: 0 0 0 4px color-mix(in oklch, var(--brand-primary) 15%, transparent);
   transform: translateY(-2px);
 }
-textarea { min-height: 180px; resize: vertical }
+
+textarea {
+  min-height: 180px;
+  resize: vertical
+}
 
 button {
   background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
@@ -261,6 +334,7 @@ button {
   position: relative;
   overflow: hidden;
 }
+
 button::before {
   content: "";
   position: absolute;
@@ -273,12 +347,20 @@ button::before {
   transform: translate(-50%, -50%);
   transition: width 0.6s, height 0.6s;
 }
+
 button:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 25px color-mix(in oklch, var(--brand-primary) 60%, transparent);
 }
-button:hover::before { width: 300px; height: 300px }
-button:active { transform: translateY(-1px) }
+
+button:hover::before {
+  width: 300px;
+  height: 300px
+}
+
+button:active {
+  transform: translateY(-1px)
+}
 
 footer {
   text-align: center;
@@ -289,9 +371,13 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .hamburger { display: flex }
+  .hamburger {
+    display: flex
+  }
 
-  nav a:hover { transform: translateY(-2px) }
+  nav a:hover {
+    transform: translateY(-2px)
+  }
 
   nav {
     position: fixed;
@@ -309,7 +395,9 @@ footer {
     overflow-y: auto;
   }
 
-  nav.active { right: 0 }
+  nav.active {
+    right: 0
+  }
 
   nav a {
     display: block;
@@ -319,46 +407,115 @@ footer {
     font-size: 1rem;
   }
 
-  nav a::before { display: none }
+  nav a::before {
+    display: none
+  }
 
-  main { margin: 20px auto; padding: 0 20px }
+  main {
+    margin: 20px auto;
+    padding: 0 20px
+  }
 
-  section, article, form { padding: 25px 20px; border-radius: 15px }
+  section,
+  article,
+  form {
+    padding: 25px 20px;
+    border-radius: 15px
+  }
 
-  header { padding: 35px 20px; border-radius: 20px; margin-bottom: 30px }
+  header {
+    padding: 35px 20px;
+    border-radius: 20px;
+    margin-bottom: 30px
+  }
 
-  header img { width: 140px; height: 140px }
+  header img {
+    width: 140px;
+    height: 140px
+  }
 
-  h1 { font-size: 1.8rem }
-  h2 { font-size: 1.4rem }
-  h3 { font-size: 1.1rem }
+  h1 {
+    font-size: 1.8rem
+  }
 
-  button { width: 100%; padding: 14px 30px }
+  h2 {
+    font-size: 1.4rem
+  }
 
-  form { padding: 25px 20px }
+  h3 {
+    font-size: 1.1rem
+  }
+
+  button {
+    width: 100%;
+    padding: 14px 30px
+  }
+
+  form {
+    padding: 25px 20px
+  }
 }
 
 @media (max-width: 480px) {
-  main { padding: 0 15px }
+  main {
+    padding: 0 15px
+  }
 
-  nav a:hover { transform: translateY(-2px) }
+  nav a:hover {
+    transform: translateY(-2px)
+  }
 
-  section, article, form { padding: 20px 15px }
-  header { padding: 30px 15px }
-  header img { width: 120px; height: 120px }
+  section,
+  article,
+  form {
+    padding: 20px 15px
+  }
 
-  h1 { font-size: 1.5rem }
-  h2 { font-size: 1.2rem }
+  header {
+    padding: 30px 15px
+  }
 
-  ul li { padding-left: 25px; font-size: 0.95rem }
+  header img {
+    width: 120px;
+    height: 120px
+  }
 
-  nav { width: 260px; padding: 70px 20px 20px }
+  h1 {
+    font-size: 1.5rem
+  }
+
+  h2 {
+    font-size: 1.2rem
+  }
+
+  ul li {
+    padding-left: 25px;
+    font-size: 0.95rem
+  }
+
+  nav {
+    width: 260px;
+    padding: 70px 20px 20px
+  }
 }
 
 @media print {
-  body { background: white; color: black }
-  nav, footer, .hamburger { display: none }
-  section, article { box-shadow: none; page-break-inside: avoid }
+  body {
+    background: white;
+    color: black
+  }
+
+  nav,
+  footer,
+  .hamburger {
+    display: none
+  }
+
+  section,
+  article {
+    box-shadow: none;
+    page-break-inside: avoid
+  }
 }
 
 .color-scheme {
@@ -373,6 +530,7 @@ footer {
   z-index: 2000;
   backdrop-filter: blur(10px);
 }
+
 .color-scheme select {
   font-family: inherit;
   font-size: 0.9rem;
@@ -384,6 +542,7 @@ footer {
   color: var(--fg);
   cursor: pointer;
 }
+
 #github-stats {
   margin: 40px auto;
 }
@@ -400,7 +559,10 @@ footer {
   box-shadow: 0 6px 18px var(--shadow);
 }
 
-.gh-loading { opacity: .7; font-style: italic }
+.gh-loading {
+  opacity: .7;
+  font-style: italic
+}
 
 .gh-grid {
   display: grid;
@@ -442,8 +604,129 @@ footer {
 }
 
 @media (max-width: 800px) {
-  .gh-grid { grid-template-columns: repeat(2, 1fr) }
+  .gh-grid {
+    grid-template-columns: repeat(2, 1fr)
+  }
 }
+
 @media (max-width: 480px) {
-  .gh-grid { grid-template-columns: 1fr }
+  .gh-grid {
+    grid-template-columns: 1fr
+  }
+}
+
+.embed-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 18px var(--shadow);
+}
+
+.canva-embed {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+/* Achievements band */
+.stats {
+  margin-top: 8px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 6px 16px var(--ring);
+}
+
+.stats-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 980px) {
+  .stats-grid {
+    grid-template-columns: repeat(6, 1fr)
+  }
+}
+
+.stat {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: .5px;
+  color: var(--primary);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--muted)
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr
+}
+
+@media (min-width: 980px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr 1fr 1fr
+  }
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 6px 18px var(--ring);
+}
+
+.period {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.small {
+  color: var(--muted);
+  font-size: 14px
+}
+
+.ph {
+  aspect-ratio: 16/10;
+  border: 1px dashed var(--slate);
+  border-radius: 12px;
+  background: repeating-linear-gradient(45deg, rgba(173, 187, 218, .35), rgba(173, 187, 218, .35) 12px, rgba(237, 232, 245, .6) 12px, rgba(237, 232, 245, .6) 24px);
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 14px;
+  padding: 12px;
+  text-align: center
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center
 }
