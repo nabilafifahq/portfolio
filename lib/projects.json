@@ -1,14 +1,50 @@
 [
-    {
-      "title": "Marketing Communications at UC San Diego IT Services",
-      "year": "2025",
-      "image": "images/empty.svg",
-      "description": "Developing and executing communication strategies."
-    },
-    {
-      "title": "Community Growth at Tech Voice Indonesia",
-      "year": "2025",
-      "image": "images/empty.svg",
-      "description": "Leading community engagement initiatives."
-    }
-  ]  
+  {
+    "title": "Marketing Communications at UC San Diego IT Services",
+    "role": "Marketing Communications Specialist",
+    "period": "Mar 2025 - Present",
+    "description": "Developing and executing comprehensive communication strategies for IT Services, including weekly internal newsletters and the Process Palooza website. Managing content creation, web updates, and promotional materials across digital and print platforms while ensuring brand consistency and accessibility compliance.",
+    "tools": ["Emma", "Jira", "Notion", "CMS", "Canva", "Adobe Creative Suite"],
+    "image": "images/ucsd.jpg"
+  },
+  {
+    "title": "Community Growth at Tech Voice Indonesia",
+    "role": "Community Specialist",
+    "period": "Mar 2025 - Present",
+    "description": "Leading community engagement initiatives for a tech community of 1,600+ members. Conducted market research to identify pain points and designed product offerings including AI courses, career prep workshops, and language programs. Developed quarterly roadmaps for events and created marketing collateral to drive member engagement and satisfaction.",
+    "tools": ["WhatsApp", "Google Forms", "Sheets", "Canva", "Trello", "Typeform"],
+    "image": "images/techvoice.jpg"
+  },
+  {
+    "title": "Business Development for MSMEs",
+    "role": "Business Development Specialist",
+    "period": "Nov 2024 - Apr 2025",
+    "description": "Conducted comprehensive market research to uncover growth opportunities in the MSME sector. Led outreach campaigns and delivered persuasive presentations to potential clients. Worked on projects including a Point of Sales Dashboard for CV Pandumedia Mulya Sejahtera and Web E-commerce platform for CV Gas Pol Indonesia.",
+    "tools": ["LinkedIn", "Gmail", "Canva", "Airtable", "Calendly"],
+    "image": "images/msme.jpg"
+  },
+  {
+    "title": "Campaign Management at Perempuan Masa Depan ID",
+    "role": "Project Manager & Outreach",
+    "period": "Jan 2024 - Jun 2024",
+    "description": "Managed end-to-end execution of webinars and national campaigns celebrating Women's Day and Indonesian holidays. Led outreach to speakers and sponsors, developed creative kits for Instagram campaigns, and analyzed event performance through KPI reports to improve future outcomes.",
+    "deliverables": ["Instagram live series", "webinar programs", "career coaching", "fundraising initiatives"],
+    "image": "images/pmdid.jpg"
+  },
+  {
+    "title": "Edtech Business Strategy for Telkom Indonesia",
+    "role": "Business Development Program Participant",
+    "period": "Jul 2024 - Sep 2024",
+    "description": "Led business model development for Pijar Mahir, a digital upskilling platform. Created Lean Canvas, pitch decks, and strategic recommendations. Researched partnership opportunities with government agencies and developed pricing strategies to enhance revenue optimization in the competitive edtech landscape.",
+    "tools": ["Figma", "Lucidchart", "SEMrush", "Canva"],
+    "image": "images/telkom.jpg"
+  },
+  {
+    "title": "Tourism & Digital Marketing with AIESEC",
+    "role": "Local Volunteer",
+    "period": "Jul 2024 - Aug 2024",
+    "description": "Conducted research on local tourism trends in Malang, identifying promotion opportunities for destinations like Bedengan Camping Ground and Kampung Warna Warni Jodipan. Led multimedia campaign creation for Dona Doni Rattan Gallery, enhancing their digital marketing presence through videos and strategic content.",
+    "tools": ["Canva", "CapCut", "SurveyMonkey", "Social Media Platforms"],
+    "image": "images/aiesec.jpg"
+  }
+]
