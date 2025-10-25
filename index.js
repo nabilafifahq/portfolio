@@ -26,7 +26,15 @@ async function renderLatestProjects() {
 
   try {
     const all = await fetchJSON("./lib/projects.json");
-    const latest = Array.isArray(all) ? all.slice(0, 3) : [];
+    const sorted = Array.isArray(all)
+      ? [...all].sort((a, b) => {
+          const ya = Number(a.year ?? (a.period?.match(/\d{4}/)?.[0] ?? 0));
+          const yb = Number(b.year ?? (b.period?.match(/\d{4}/)?.[0] ?? 0));
+          return yb - ya;
+        })
+      : [];
+
+    const latest = sorted.slice(0, 3);
     renderProjects(latest, container, "h3");
   } catch (err) {
     console.error(err);
