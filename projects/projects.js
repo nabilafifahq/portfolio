@@ -7,18 +7,15 @@ async function renderProjectsGrid() {
   try {
     const projects = await fetchJSON("../lib/projects.json");
 
-    // Sort by period (latest first if period includes years like "Mar 2025 - Present")
     const sorted = [...projects].sort((a, b) => {
       const yearA = parseInt(a.period?.match(/\d{4}/)?.[0] || 0);
       const yearB = parseInt(b.period?.match(/\d{4}/)?.[0] || 0);
       return yearB - yearA;
     });
 
-    // Update title with total project count
     const titleEl = document.querySelector(".projects-title");
     if (titleEl) titleEl.textContent = `Projects and Campaigns (${sorted.length})`;
 
-    // Render cards
     container.innerHTML = sorted
       .map(
         (p) => `
@@ -27,9 +24,6 @@ async function renderProjectsGrid() {
           <h3>${p.title}</h3>
           <span class="small">${p.role || ""}</span>
           <p class="period">${p.period || ""}</p>
-        </div>
-        <div class="ph">
-          <img src="${p.image || "images/empty.svg"}" alt="${p.title}" />
         </div>
         <p>${p.description}</p>
         ${
