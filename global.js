@@ -114,7 +114,6 @@ export function renderProjects(projects, containerElement, headingLevel = "h2") 
     const description  = p?.description ?? "";
     const tools        = Array.isArray(p?.tools) ? p.tools : [];
     const deliverables = Array.isArray(p?.deliverables) ? p.deliverables : [];
-    const image        = p?.image || "";
     
     let listSection = "";
     if (tools.length > 0) {
@@ -132,9 +131,6 @@ export function renderProjects(projects, containerElement, headingLevel = "h2") 
     }
 
     const Heading = headingLevel;
-    const imgBlock = image
-      ? `<img src="${image}" alt="${title}" style="width:100%;height:auto;border-radius:12px;margin:8px 0 12px 0;">`
-      : "";
 
     return `
       <article class="card">
@@ -146,7 +142,6 @@ export function renderProjects(projects, containerElement, headingLevel = "h2") 
           ${period ? `<span class="period small">${period}</span>` : ""}
         </div>
 
-        ${imgBlock}
         ${description ? `<p>${description}</p>` : ""}
         ${listSection}
       </article>
