@@ -97,31 +97,63 @@ export async function fetchJSON(url) {
 }
 
 export function renderProjects(projects, containerElement, headingLevel = "h2") {
-  if (!containerElement) return
-  const valid = new Set(["h1","h2","h3","h4","h5","h6"])
-  if (!valid.has(headingLevel)) headingLevel = "h2"
+  if (!containerElement) return;
 
-  containerElement.innerHTML = ""
+  const valid = new Set(["h1","h2","h3","h4","h5","h6"]);
+  if (!valid.has(headingLevel)) headingLevel = "h2";
 
   if (!Array.isArray(projects) || projects.length === 0) {
-    containerElement.innerHTML = `<p>No projects to display.</p>`
-    return
+    containerElement.innerHTML = `<p>No projects to display.</p>`;
+    return;
   }
 
-  for (const project of projects) {
-    const title = project?.title ?? "Untitled"
-    const image = project?.image ?? "images/empty.svg"
-    const description = project?.description ?? ""
-    const year = project?.year ?? ""
+  const html = projects.map((p) => {
+    const title        = p?.title ?? "Untitled";
+    const role         = p?.role ?? "";
+    const period       = p?.period ?? (p?.year ? String(p.year) : "");
+    const description  = p?.description ?? "";
+    const tools        = Array.isArray(p?.tools) ? p.tools : [];
+    const deliverables = Array.isArray(p?.deliverables) ? p.deliverables : [];
+    const image        = p?.image || "";
+    
+    let listSection = "";
+    if (tools.length > 0) {
+      listSection = `
+        <div class="small" style="margin-top: 10px; font-weight: 600;">
+          Tools Used: ${tools.join(", ")}
+        </div>
+      `;
+    } else if (deliverables.length > 0) {
+      listSection = `
+        <div class="small" style="margin-top: 10px; font-weight: 600;">
+          Deliverables: ${deliverables.join(", ")}
+        </div>
+      `;
+    }
 
-    const article = document.createElement("article")
-    article.innerHTML = `
-      <${headingLevel}>${title}${year ? ` <small>· ${year}</small>` : ""}</${headingLevel}>
-      <img src="${image}" alt="${title}">
-      <p>${description}</p>
-    `
-    containerElement.appendChild(article)
-  }
+    const Heading = headingLevel;
+    const imgBlock = image
+      ? `<img src="${image}" alt="${title}" style="width:100%;height:auto;border-radius:12px;margin:8px 0 12px 0;">`
+      : "";
+
+    return `
+      <article class="card">
+        <div class="label">
+          <div>
+            <${Heading}>${title}</${Heading}>
+            ${role ? `<p class="small">${role}</p>` : ""}
+          </div>
+          ${period ? `<span class="period small">${period}</span>` : ""}
+        </div>
+
+        ${imgBlock}
+        ${description ? `<p>${description}</p>` : ""}
+        ${listSection}
+      </article>
+    `;
+  }).join("");
+
+  containerElement.innerHTML = html;
 }
 
 export async function fetchGitHubData(username) {
