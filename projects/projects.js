@@ -1,4 +1,4 @@
-import { fetchJSON } from "../global.js"
+import { fetchJSON } from "../global.js";
 
 async function renderProjectsGrid() {
   const container = document.querySelector(".projects");
@@ -17,24 +17,41 @@ async function renderProjectsGrid() {
     if (titleEl) titleEl.textContent = `Projects and Campaigns (${sorted.length})`;
 
     container.innerHTML = sorted
-      .map(
-        (p) => `
-      <div class="card">
-        <div class="label">
-          <h3>${p.title}</h3>
-          <span class="small">${p.role || ""}</span>
-          <p class="period">${p.period || ""}</p>
-        </div>
-        <p>${p.description}</p>
-        ${
-          p.tools
-            ? `<ul>${p.tools.map((tool) => `<li>${tool}</li>`).join("")}</ul>`
-            : p.deliverables
-            ? `<ul>${p.deliverables.map((item) => `<li>${item}</li>`).join("")}</ul>`
-            : ""
+      .map((p) => {
+        const hasTools = Array.isArray(p.tools) && p.tools.length > 0;
+        const hasDeliverables =
+          Array.isArray(p.deliverables) && p.deliverables.length > 0;
+
+        let listSection = "";
+        if (hasTools) {
+          listSection = `
+            <div class="small" style="margin-top: 10px; font-weight: 600;">
+              Tools Used: ${p.tools.join(", ")}
+            </div>
+          `;
+        } else if (hasDeliverables) {
+          listSection = `
+            <div class="small" style="margin-top: 10px; font-weight: 600;">
+              Deliverables: ${p.deliverables.join(", ")}
+            </div>
+          `;
         }
-      </div>`
-      )
+
+        return `
+          <article class="card">
+            <div class="label">
+              <div>
+                <h3>${p.title}</h3>
+                ${p.role ? `<p class="small">${p.role}</p>` : ""}
+              </div>
+              ${p.period ? `<span class="period">${p.period}</span>` : ""}
+            </div>
+
+            <p>${p.description}</p>
+            ${listSection}
+          </article>
+        `;
+      })
       .join("");
   } catch (err) {
     console.error("Error loading projects:", err);

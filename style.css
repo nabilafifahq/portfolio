@@ -632,15 +632,12 @@ footer {
   border: 0;
 }
 
-
-/* Achievements band */
 .stats {
-  margin-top: 8px;
-  padding: 16px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
-  box-shadow: 0 6px 16px var(--ring);
+  padding: 18px;
+  box-shadow: 0 6px 18px var(--shadow);
 }
 
 .stats-grid {
@@ -659,8 +656,8 @@ footer {
   display: grid;
   gap: 4px;
   padding: 14px;
-  background: #fff;
-  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 6px 18px var(--shadow);
   border-radius: 12px;
   text-align: center;
 }
@@ -669,12 +666,12 @@ footer {
   font-size: 30px;
   font-weight: 900;
   letter-spacing: .5px;
-  color: var(--primary);
+  color: var(--fg);
 }
 
 .stat-label {
   font-size: 13px;
-  color: var(--muted)
+  color: color-mix(in oklch, var(--fg) 50%, var(--bg) 50%);
 }
 
 .grid {
@@ -694,11 +691,11 @@ footer {
 }
 
 .card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 18px;
-  box-shadow: 0 6px 18px var(--ring);
+  box-shadow: 0 6px 18px var(--shadow);
 }
 
 .period {
@@ -707,21 +704,8 @@ footer {
 }
 
 .small {
-  color: var(--muted);
+  color: var(--fg);
   font-size: 14px
-}
-
-.ph {
-  aspect-ratio: 16/10;
-  border: 1px dashed var(--slate);
-  border-radius: 12px;
-  background: repeating-linear-gradient(45deg, rgba(173, 187, 218, .35), rgba(173, 187, 218, .35) 12px, rgba(237, 232, 245, .6) 12px, rgba(237, 232, 245, .6) 24px);
-  display: grid;
-  place-items: center;
-  color: var(--muted);
-  font-size: 14px;
-  padding: 12px;
-  text-align: center
 }
 
 .label {
