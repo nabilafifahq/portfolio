@@ -32,7 +32,10 @@ for (const p of pages) {
   a.toggleAttribute("target", isExternal)
   if (isExternal) a.rel = "noopener"
 
-  a.classList.toggle("current", a.host === location.host && a.pathname === location.pathname)
+  a.classList.toggle(
+    "current",
+    a.host === location.host && a.pathname === location.pathname
+  )
 
   nav.append(a)
 }
@@ -56,33 +59,74 @@ document.body.insertAdjacentHTML(
 
 const select = document.querySelector(".color-scheme select")
 
-function setColorScheme(mode) {
+function applyColorScheme(mode) {
+  if (mode === "automatic") mode = "light dark"
+  const valid = new Set(["light dark", "light", "dark"])
+  if (!valid.has(mode)) mode = "light dark"
   document.documentElement.style.setProperty("color-scheme", mode)
   localStorage.colorScheme = mode
   select.value = mode
 }
 
-if (localStorage.colorScheme) {
-  setColorScheme(localStorage.colorScheme)
-} else {
-  setColorScheme("light dark")
-}
-
-select.addEventListener("input", e => setColorScheme(e.target.value))
+applyColorScheme(localStorage.colorScheme || "light dark")
+select.addEventListener("input", e => applyColorScheme(e.target.value))
 
 const form = document.querySelector("form")
 if (form) {
   form.addEventListener("submit", event => {
     event.preventDefault()
     const data = new FormData(form)
-
     const parts = []
     for (const [name, value] of data.entries()) {
       parts.push(`${encodeURIComponent(name)}=${encodeURIComponent(value)}`)
     }
-    const query = parts.join("&")
-
-    const targetURL = `${form.action}?${query}`
-    window.location.href = targetURL
+    const targetURL = `${form.action}?${parts.join("&")}`
+    location.href = targetURL
   })
+}
+
+export async function fetchJSON(url) {
+  try {
+    const response = await fetch(url)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`)
+    }
+    const data = await response.json()
+    return data
+  } catch (err) {
+    console.error("Error fetching or parsing JSON data:", err)
+    return null
+  }
+}
+
+export function renderProjects(projects, containerElement, headingLevel = "h2") {
+  if (!containerElement) return
+  const valid = new Set(["h1","h2","h3","h4","h5","h6"])
+  if (!valid.has(headingLevel)) headingLevel = "h2"
+
+  containerElement.innerHTML = ""
+
+  if (!Array.isArray(projects) || projects.length === 0) {
+    containerElement.innerHTML = `<p>No projects to display.</p>`
+    return
+  }
+
+  for (const project of projects) {
+    const title = project?.title ?? "Untitled"
+    const image = project?.image ?? "images/empty.svg"
+    const description = project?.description ?? ""
+    const year = project?.year ?? ""
+
+    const article = document.createElement("article")
+    article.innerHTML = `
+      <${headingLevel}>${title}${year ? ` <small>· ${year}</small>` : ""}</${headingLevel}>
+      <img src="${image}" alt="${title}">
+      <p>${description}</p>
+    `
+    containerElement.appendChild(article)
+  }
+}
+
+export async function fetchGitHubData(username) {
+  return fetchJSON(`https://api.github.com/users/${username}`)
 }
