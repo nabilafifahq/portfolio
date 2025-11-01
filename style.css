@@ -714,3 +714,76 @@ footer {
   gap: 10px;
   align-items: center
 }
+
+.pie-wrap {
+  display: flex;
+  gap: 16px;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+#projects-pie {
+  max-width: 20em;
+  margin-block: 1em;
+  overflow: visible;
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 12px;
+  padding: 10px;
+  margin: 0;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px var(--shadow);
+  flex: 1;
+  min-width: 16rem;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.legend .swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--color);
+  display: inline-block;
+  border: 1px solid var(--border);
+}
+
+
+#projects-pie path { transition: 300ms; cursor: pointer }
+#projects-pie:has(path:hover) path:not(:hover) { opacity: .5 }
+
+#projects-pie:has(path.selected) path:not(.selected) { opacity: .45 }
+
+.legend:has(li.selected) li:not(.selected) { opacity: .6 }
+
+#projects-pie path.selected {
+  stroke: color-mix(in oklch, var(--fg) 60%, transparent);
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 6px var(--shadow-strong));
+}
+
+.legend li.selected {
+  stroke: color-mix(in oklch, var(--fg) 60%, transparent);
+  outline: 2px solid color-mix(in oklch, var(--fg) 60%, transparent);
+  outline-offset: 2px;
+}
+
+.searchBar {
+  margin-top: 14px;
+  width: 100%;
+}
