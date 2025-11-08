@@ -787,3 +787,143 @@ footer {
   margin-top: 14px;
   width: 100%;
 }
+
+.stats dt {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.stats dd {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+dl.info {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.2rem 0.6rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  z-index: 10;
+  transition-duration: 0.3s;
+  transition-property: opacity, visibility, transform;
+}
+
+dl.info[hidden] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.gridlines line {
+  stroke: #ccc;
+  stroke-opacity: 0.4;
+}
+
+circle {
+  transition: 0.2s;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.2);
+}
+
+circle.selected {
+  fill: #ff6b6b;
+}
+
+.summary-stats {
+  padding: 18px 22px;
+}
+
+.summary-stats h2 {
+  margin: 0 0 10px;
+  border: 0;
+  padding: 0;
+  color: var(--fg);
+  font-size: 1.8rem;
+}
+
+.summary-stats h2::after {
+  content: none;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  column-gap: 32px;
+  row-gap: 4px;
+  align-items: flex-start;
+}
+
+.summary-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in oklch, var(--fg) 55%, var(--bg) 45%);
+}
+
+.summary-value {
+  margin: 0 0 6px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+dl.info.tooltip {
+  background: var(--surface-strong);
+  color: var(--fg);
+  box-shadow: 0 4px 14px var(--shadow-strong);
+  border: 1px solid var(--border);
+}
+
+#language-breakdown {
+  margin-top: 14px;
+}
+
+#language-breakdown .lang-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(120px, 1fr);
+  gap: 24px;
+}
+
+#language-breakdown .lang-item {
+  display: grid;
+  gap: 4px;
+}
+
+#language-breakdown .lang-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+#language-breakdown .lang-lines,
+#language-breakdown .lang-percent {
+  font-size: 1rem;
+  color: color-mix(in oklch, var(--fg) 60%, var(--bg) 40%);
+}
+
+.gridlines line {
+  stroke: color-mix(in oklch, var(--fg) 18%, var(--bg) 82%);
+  stroke-opacity: 0.5;
+}
+
+circle {
+  transition: 0.2s;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.15);
+}
+
+circle.selected {
+  fill: oklch(70% 0.12 25);
+  fill-opacity: 0.95;
+}

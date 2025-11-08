@@ -15,7 +15,8 @@ const pages = [
   { url: "resume/",   title: "Resume" },
   { url: "contact/",  title: "Contact" },
   { url: "https://linkedin.com/in/nqotrunnada/", title: "LinkedIn" },
-  { url: "https://github.com/nabilafifahq",      title: "GitHub" }
+  { url: "https://github.com/nabilafifahq",      title: "GitHub" },
+  { url: "meta/",  title: "Meta" },
 ]
 
 const nav = document.createElement("nav")
