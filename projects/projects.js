@@ -59,17 +59,25 @@ function renderList(projects) {
 
       return `
         <article class="card">
-          <div class="label">
-            <div>
-              <h3>${p.title}</h3>
-              ${p.role ? `<p class="small">${p.role}</p>` : ""}
-            </div>
-            ${p.period ? `<span class="period">${p.period}</span>` : ""}
-          </div>
+  ${p.image ? `<img class="card-image" src="${p.image}" alt="${p.title}">` : ""}
 
-          <p>${p.description}</p>
-          ${listSection}
-        </article>`;
+  <div class="label">
+    <div>
+      <h3>
+        ${
+          p.url
+          ? `<a class="project-link" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.title}</a>`
+          : p.title
+        }
+      </h3>
+      ${p.role ? `<p class="small">${p.role}</p>` : ""}
+    </div>
+    ${p.period ? `<span class="period">${p.period}</span>` : ""}
+  </div>
+
+  <p>${p.description}</p>
+  ${listSection}
+</article>`;
     })
     .join("");
 }
